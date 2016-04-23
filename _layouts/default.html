@@ -1,5 +1,16 @@
 {% include head.html %}
 
-{{content}}
+<body>
+  {% include nav.html %}
+  <div class="wrapper hfeed">
+    <div id="container" class="cf">
+      <div id="content">
+      {{ content }}
+      </div>
 
-{% include footer.html %}
+      {% include sidebar.html %}
+    </div>
+  </div>
+  {% include footer.html %}
+</body>
+</html>

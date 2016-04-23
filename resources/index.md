@@ -6,7 +6,8 @@ author: Chandler
 layout: page
 guid: http://giscollective.org/?page_id=189
 ---
-enter code hereWe can&#8217;t document everything! This page will be a repository of as many useful resources for GIS/Cartography/Web-Mapping as we can find. If there are any resources that we haven&#8217;t listed, please email us at giscollective@gmail.com and share the knowledge!
+
+We can't document everything! This page will be a repository of as many useful resources for GIS/Cartography/Web-Mapping as we can find. If there are any resources that we haven't listed, please email us at giscollective@gmail.com and share the knowledge!
 
 **GIS**
 

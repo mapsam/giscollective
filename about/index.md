@@ -18,7 +18,7 @@ Education Specialist, _Mapbox_
 
 **Sam Matthews**
   
-2015 Fellow, _Code for America_
+Engineer, _Mapbox_
   
 [mapsam.com](http://www.mapsam.com) | [@vancematthews](https://twitter.com/vancematthews)
 

@@ -8,11 +8,61 @@ License: GNU General Public License
 License URI: https://www.gnu.org/licenses/gpl.html
 */
 
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{font-size:100%;font:inherit;padding:0;border:0;margin:0;vertical-align:baseline}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block; margin:0; padding:0;}.clear{clear:both}.sticky{}.bypostauthor{}.wp-caption{}.wp-caption-text{}.gallery-caption{}.alignright{}.alignleft{}.aligncenter{}
+* {
+  box-sizing:border-box;  
+  -moz-box-sizing:border-box; 
+  -webkit-box-sizing:border-box;
+}
 
 body {
   background-color:#e5e5e5;
   color:#000;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Slab', serif;
+}
+
+.cf:before,
+.cf:after {
+    content:" ";
+    display:table;
+}
+.cf:after {
+    clear:both;
+}
+.cf {
+    *zoom:1;
+}
+a {
+  color: #0367A6;
+}
+p, li {
+  line-height: 1.6em;
+}
+
+.home-post {
+  display: block;
+  color: #333;
+  width: 100%;
+  padding: 1em;
+  background: white;
+  border-left: 3px solid #d29197;
+  margin-top: 10px;
+}
+.home-post:hover {
+  text-decoration: none;
+  border-left-color: #A6242F;
+}
+/*A6242F
+0367A6
+F2E6D8*/
+.home-post-title {
+  margin: 0;
+}
+.home-post-date {
+  font-size: 0.8em;
+  color: #999;
+  display: block;
 }
 
 /* Scaffolding */
@@ -35,8 +85,8 @@ body {
     width:75%;
   }
   #sidebar {
+    margin: 10px 0 0;
     float:right;
-    margin:0;
     width:23%;
     text-align:left;
   }
@@ -130,9 +180,9 @@ button.nav-expand:hover {
 button.nav-expand:focus {
   outline:none;
 }
-.icon.hamburger { font-size:3em; }
-.hamburger:before { content: "\f333";color:#A6242F; }
-.nav-expand.open .icon.hamburger:before { content: "\f335"; font-size:1.1em; color:#A6242F;}
+.hamburger { font-size:3em; }
+.hamburger:before { color:#A6242F; }
+.nav-expand.open .icon.hamburger:before { font-size:1.1em; color:#A6242F; }
 
 @media screen and (min-width:56em) {
   #navbar {
@@ -174,7 +224,6 @@ button.nav-expand:focus {
   float:left;
 }
 #site-title a {
-  font-family: 'Roboto Slab', serif;
   font-weight:900;
   font-size:2.9em;
   color:#A6242F;
@@ -190,9 +239,9 @@ button.nav-expand:focus {
 .post a {
   color:#3556B5;
 }
-.entry-title a {
+.title a {
   font-family: 'Roboto', sans-serif;
-  font-size:2.3em;
+  font-size:1.5em;
   font-weight:900;
   margin:0 0 10px 0;
   color:#000;
@@ -203,13 +252,6 @@ button.nav-expand:focus {
   margin:5px 0 10px 0;
   font-size:0.9em;
 }
-.entry-content p, .entry-summary p {
-  font-family: 'Roboto Slab', serif;
-  font-size:1.0em;
-  line-height:1.4em;
-  margin:0 0 17px 0;
-  color:#333;
-}
 .entry-content ul {
   list-style-type: disc;
   margin:0 0 15px 40px;
@@ -219,7 +261,6 @@ button.nav-expand:focus {
   margin:0 0 10px 20px;
 }
 .entry-content ul li, .entry-content ul li ul li {
-  font-family: 'Roboto Slab', serif;
   font-size:1.0em;
   line-height:1.4em;
   margin:0 0 4px 0;
@@ -236,7 +277,6 @@ button.nav-expand:focus {
   margin:0 0 10px 20px;
 }
 .entry-content ol li, .entry-content ol li ol li {
-  font-family: 'Roboto Slab', serif;
   font-size:1.0em;
   line-height:1.4em;
   margin:0 0 4px 0;
@@ -267,7 +307,6 @@ button.nav-expand:focus {
   height:auto;
 }
 .entry-content blockquote {
-  font-family: 'Roboto Slab', serif;
   font-size:1.0em;
   line-height:1.4em;
   margin:0 0 17px 20px;
@@ -310,7 +349,6 @@ button.nav-expand:focus {
   font-size:0.8em;
 }
 .comment-content p {
-  font-family: 'Roboto Slab', serif;
   font-size:0.8em;
   line-height:1.4em;
   margin:0 0 17px 0;
@@ -323,7 +361,6 @@ button.nav-expand:focus {
   font-family: 'Roboto', serif;
 }
 #commentform p {
-  font-family: 'Roboto Slab', serif;
   font-size:0.825em;
   line-height:1.4em;
   margin:0 0 17px 0;
@@ -343,7 +380,6 @@ button.nav-expand:focus {
 }
 
 .archive-meta {
-  font-family: 'Roboto Slab', serif;
   margin-bottom:15px;
   font-size:0.8em;
   text-transform:uppercase;
@@ -351,7 +387,6 @@ button.nav-expand:focus {
 
 /* Sidebar Style */
 #site-description {
-  font-family: 'Roboto Slab', serif;
   font-size:1.0em;
   line-height:1.4em;
   margin:0 0 17px 0;
@@ -363,52 +398,44 @@ button.nav-expand:focus {
 .sid {}
 .sid li ul li {
 }
-.widget-container {
+.side {
+  padding: 1em;
   margin:0 0 10px 0;
   font-family: 'Roboto', serif;
   background-color:#f6f6f6;
 }
-.widget-container:nth-child(1) {
+.side:nth-child(1) {
   border-left:3px solid #F2BC57;
 }
-.widget-container:nth-child(2) {
+.side:nth-child(2) {
   border-left:3px solid #71C6D9;
 }
-.widget-container:nth-child(3) {
+.side:nth-child(3) {
   border-left:3px solid #A6242F;
 }
-.widget-container:nth-child(4) {
+.side:nth-child(4) {
   border-left:3px solid #0367A6;
 }
-.widget-container:nth-child(5) {
+.side:nth-child(5) {
   border-left:3px solid #F2E6D8;
 }
-.widget-categories {}
-.widget-title {
-  padding:10px;
+.side-title {
+  display: block;
   border-bottom:1px solid #e5e5e5;
-  margin:0 0 5px 0;
   font-weight:700;
 }
-.widget-container ul {
-  padding:1px 10px 10px;
+.side ul {
+  margin: 0; padding: 0;
+  list-style-type: none;
 }
-.widget-container ul li {
-  margin:0 0 2px 0;
+.side ul li {
+  line-height: 1.15em;
+  margin-top: 8px;
 }
-.widget-container ul li a {
-  font-family: 'Roboto Slab', serif;
+.side ul li a {
   font-size:0.8em;
   color:#A6242F;
   opacity:0.7;
-  -webkit-transition:.5s;
-  -moz-transition:.5s;
-  -o-transition:.5s;
-  transition:.5s;
-}
-.widget-container ul li a:hover {
-  text-decoration:none;
-  opacity:1.0;
 }
 #recent-posts {
   border-bottom:thin #c0c0c0 solid;
@@ -459,6 +486,7 @@ button.nav-expand:focus {
 
 /* Footer */
 footer {
+  text-align: center;
   margin:60px 0 40px 0;
 }
 #copyright {
