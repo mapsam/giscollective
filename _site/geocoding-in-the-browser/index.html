@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GISCollective</title>
+  <meta http-equiv="content-type" charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,600,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href="/public/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar">
+  <div class="wrapper">
+    <div id="branding">
+      <div id="site-title"><h1><a href="/" title="GISC" rel="home">GISC</a></h1></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-expand"><i class="icon hamburger"></i></button>
+      <ul id="menu-gisc-2" class="menu">
+        <li id="menu-item-111" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-111"><a href="/">Home</a></li>
+        <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="/tutorials/">Tutorials</a></li>
+        <li id="menu-item-192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192"><a href="/resources/">Resources</a></li>
+        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+  <div class="wrapper hfeed">
+  <div id="container">
+
+<article id="content">
+  <div class="post type-post status-publish format-standard hentry category-data">
+    <h2 class="entry-title">
+      <a href="/geocoding-in-the-browser/" title="Geocoding in the browser" rel="bookmark">Geocoding in the browser</a>
+    </h2>
+
+    <div class="entry-content">
+      <div class="entry-meta">
+  <span class="meta-prep meta-prep-author">By </span>
+  <span class="author"><a class="url fn n" href="/Sam Matthews" title="View all articles by Irina Papuc">Sam Matthews</a></span>
+  <span class="meta-sep"> | </span>
+  <span class="meta-prep meta-prep-entry-date">Published </span>
+  <span class="entry-date"><abbr class="published" title="2016-01-05T16:50:01-0500">2015-02-17 02:53:13 -0800</abbr></span>
+</div>
+
+<p>Lately I’ve been working on projects that require quick geocoding in the browser based on a user search. Here I want to share two specific geocoding services that have worked well for me, have been cost effective (free), and return seemingly solid results: <strong>Census</strong> and <strong>Mapbox</strong>. Both services allow for one to structure an HTTP query with an address and the response comes in JSON format with the appropriate latitude and longitude information.</p>
+
+<h2 id="the-census-geocoder">The Census Geocoder</h2>
+
+<p>The <a href="http://geocoding.geo.census.gov/geocoder/">Census Geocoder</a> has a pretty simple <a href="http://geocoding.geo.census.gov/geocoder/Geocoding_Services_API.pdf">REST API</a> that is accessible without the need of a special API key or token, which is awesome. There are two valid ways to structure the query:</p>
+
+<ol>
+  <li><strong>One Line Address</strong>: allows you to send a single string into the query</li>
+  <li><strong>Address parameters</strong>: build the parameters for each part of the address</li>
+</ol>
+
+<p>We’ll focus on the One Line Address for simplicity’s sake. The HTTP endpoint is as follows:</p>
+
+<p><code class="highlighter-rouge">http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?...</code></p>
+
+<p>The necessary parameters are as follows:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">address</code> – the address string you are looking for</li>
+  <li><code class="highlighter-rouge">benchmark</code> – A numerical ID or name that references what version of the locator should be searched. Here’s <a href="http://geocoding.geo.census.gov/geocoder/benchmarks">a list of benchmarks</a>.</li>
+  <li><code class="highlighter-rouge">format</code> – format of the response. Typically used with <code class="highlighter-rouge">json</code> or <code class="highlighter-rouge">jsonp</code></li>
+</ul>
+
+<p>An example call for the location of The Old Fashioned bar in Madison, WI with the address <strong>23 North Pinkney St. Madison WI</strong>:</p>
+
+<p><a href="http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=23+N+Pinckney+St+Madison+WI&amp;benchmark=4&amp;format=json">http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=23+N+Pinckney+St+Madison+WI&amp;benchmark=4&amp;format=json</a></p>
+
+<h2 id="mapbox-geocoder">Mapbox Geocoder</h2>
+
+<p>Mapbox offers a great <a href="https://www.mapbox.com/developers/api/geocoding/">geocoding service</a> that is very much like the Census, allowing for HTTP requests. They require an API key but beyond that you can make many calls to their API without going over the limit. One thing that draws me to the Mapbox version is the ability to make multiple queries for different addresses in the same request using their <a href="https://www.mapbox.com/developers/api/geocoding/#batch">batch geocoding service</a> (allowing up to 50 per request). Here’s an example searching for three different zip codes:</p>
+
+<p><a href="http://api.tiles.mapbox.com/v4/geocode/mapbox.places-permanent/20001;20009;22209.json?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q">http://api.tiles.mapbox.com/v4/geocode/mapbox.places-permanent/20001;20009;22209.json?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q</a></p>
+
+<p>The response is an array of objects with the geometry information for the respective features.</p>
+
+    </div>
+  </div>
+</article>
+
+<aside id="sidebar">
+  <p id="site-description">Collective spatial learning from students and professionals</p>
+  <div id="primary" class="widget-area">
+
+    <h3 class="widget-title">Categories</h3>
+    <ul>
+      <li>list of categories</li>
+    </ul>
+
+    <h3 class="widget-title">Recent posts</h3>
+    <ul>
+      <li>list of recent posts</li>
+    </ul>
+
+    <h3 class="widget-title">Archives</h3>
+    <ul>
+      <li>something that resembles the archives</li>
+    </ul>
+  </div>
+</aside>
+
+<div class="clear"></div>
+</div>
+<footer>
+<div id="copyright">GISCollective.org, 2016</div>
+</footer>
+</div>
+<script src="/public/gisc.js"></script>
+</body>
+</html>

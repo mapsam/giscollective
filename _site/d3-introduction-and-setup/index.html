@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GISCollective</title>
+  <meta http-equiv="content-type" charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,600,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href="/public/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar">
+  <div class="wrapper">
+    <div id="branding">
+      <div id="site-title"><h1><a href="/" title="GISC" rel="home">GISC</a></h1></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-expand"><i class="icon hamburger"></i></button>
+      <ul id="menu-gisc-2" class="menu">
+        <li id="menu-item-111" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-111"><a href="/">Home</a></li>
+        <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="/tutorials/">Tutorials</a></li>
+        <li id="menu-item-192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192"><a href="/resources/">Resources</a></li>
+        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+  <div class="wrapper hfeed">
+  <div id="container">
+
+<article id="content">
+  <div class="post type-post status-publish format-standard hentry category-data">
+    <h2 class="entry-title">
+      <a href="/d3-introduction-and-setup/" title="d3: Introduction and Setup" rel="bookmark">d3: Introduction and Setup</a>
+    </h2>
+
+    <div class="entry-content">
+      <div class="entry-meta">
+  <span class="meta-prep meta-prep-author">By </span>
+  <span class="author"><a class="url fn n" href="/Sam Matthews" title="View all articles by Irina Papuc">Sam Matthews</a></span>
+  <span class="meta-sep"> | </span>
+  <span class="meta-prep meta-prep-entry-date">Published </span>
+  <span class="entry-date"><abbr class="published" title="2016-01-05T16:50:01-0500">2013-06-20 12:18:48 -0700</abbr></span>
+</div>
+
+<p><strong>d3</strong> (Data Driven Documents) has become one of the more popular visualization libraries for the web, allowing the developer to create responsive and interactive graphics with a unique set of data. For a javascript visualization library, it allows for incredible amounts of manipulation and customization, but also has a gigantic user-group that is continually creating examples and other branch tools for making it easier to use.</p>
+
+<p>The incorporation of geographic data into d3’s standard library is the beginning of a bridge between the web and traditional cartography, finding a common medium for aesthetics and true spatial representation to co-exist (i.e. projections beyond the standard Web Mercator and SVG scalability). To me, it’s a window into the future of cartography. But how do you use it?</p>
+
+<p>Beyond the introduction tutorials it is easy to get lost in the code of brilliant developers. It’s not too long before you realize you have no idea how your visualization actually works. At the most basic, it’s tough to understand how d3 actually interacts with all of your data; how your <em>data</em> actually <em>drives</em> the <em>document</em>. So, let’s get started.</p>
+
+<h2 id="how-to-set-up-your-workstation-to-use-d3">How to set up your workstation to use d3</h2>
+
+<p>First, get a cup of coffee. There’s no reason not to.</p>
+
+<h3 id="the-tools--what-i-use">The tools | <em>What I use</em></h3>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Text Editor</td>
+          <td><em>Sublime Text</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Browser</td>
+          <td><em>Chrome, FF, IE*</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>D3 Source</td>
+          <td><em><a href="http://d3js.org/">d3js.org</a></em></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Local Server Environment</td>
+          <td><em><a href="http://www.mamp.info/en/index.html">MAMP</a> (for mac), <a href="http://www.wampserver.com/en/">WAMP</a> (for PC)</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Coffee</td>
+          <td><em>FTO</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p><em>*d3 is not supported on IE8 or below. Why? Because they answer to no one. Also, d3 is new and progressive, which is not the case in many outdated IE8 platforms so they aim for a future of good web standards.</em></p>
+
+<p>The list above is d3 at its most basic. It doesn’t even include data! Of course, you’ll bring in your own dataset to take advantage of the dynamic qualities of the library, but that doesn’t make it a requirement. Not really sure what a Local Server Environment is? <a href="http://giscollective.org/local-server-environment-setup/">Set up MAMP on your Mac</a>. In short, it will allow d3 to grab specific files or datasets from your directories. Otherwise you’ll run into <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">cross-origin resource sharing</a> issues, which can be a headache. This may not come up in a basic setup, but once you start drawing data from different files, things can get complex.</p>
+
+<p>So now you know the tools, but where to put all the files? Below is a common directory file structure:</p>
+
+<p><a href="http://giscollective.org/wp-content/uploads/2013/06/Screen-shot-2013-06-20-at-4.20.45-PM.png"><img src="http://giscollective.org/wp-content/uploads/2013/06/Screen-shot-2013-06-20-at-4.20.45-PM.png" alt="d3 file structure" width="301" height="118" class="alignnone size-full wp-image-11930" /></a></p>
+
+<p>Quite basic, but leaves room for expansion. From here, you’ll want to set up your index file with the following:</p>
+
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;D3 Setup&lt;/title&gt;
+  &lt;link rel="stylesheet" type="text/css" href="css/style.css"/&gt;
+  &lt;script type="text/javascript" src="js/d3.v3.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script type="text/javascript"&gt;
+    <span>//d3 code here</span>
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>You can view your index.html in your browser through your localhost – typically something along the lines of localhost:8888/sites/your_project – and begin taking advantage of d3’s powerful functions. Next I’ll be jumping into d3.geo, the geographic library built within d3 for cartography productions.</p>
+
+    </div>
+  </div>
+</article>
+
+<aside id="sidebar">
+  <p id="site-description">Collective spatial learning from students and professionals</p>
+  <div id="primary" class="widget-area">
+
+    <h3 class="widget-title">Categories</h3>
+    <ul>
+      <li>list of categories</li>
+    </ul>
+
+    <h3 class="widget-title">Recent posts</h3>
+    <ul>
+      <li>list of recent posts</li>
+    </ul>
+
+    <h3 class="widget-title">Archives</h3>
+    <ul>
+      <li>something that resembles the archives</li>
+    </ul>
+  </div>
+</aside>
+
+<div class="clear"></div>
+</div>
+<footer>
+<div id="copyright">GISCollective.org, 2016</div>
+</footer>
+</div>
+<script src="/public/gisc.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GISCollective</title>
+  <meta http-equiv="content-type" charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,600,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href="/public/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar">
+  <div class="wrapper">
+    <div id="branding">
+      <div id="site-title"><h1><a href="/" title="GISC" rel="home">GISC</a></h1></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-expand"><i class="icon hamburger"></i></button>
+      <ul id="menu-gisc-2" class="menu">
+        <li id="menu-item-111" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-111"><a href="/">Home</a></li>
+        <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="/tutorials/">Tutorials</a></li>
+        <li id="menu-item-192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192"><a href="/resources/">Resources</a></li>
+        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+  <div class="wrapper hfeed">
+  <div id="container">
+
+<article id="content">
+  <div class="post type-post status-publish format-standard hentry category-data">
+    <h2 class="entry-title">
+      <a href="/tutorials/gis-techniques/creating-custom-tools-in-arcgis-model-builder-2" title="Creating Custom Tools in ArcGIS – Model Builder (Part 3)" rel="bookmark">Creating Custom Tools in ArcGIS – Model Builder (Part 3)</a>
+    </h2>
+
+    <div class="entry-content">
+      <p><a href="http://giscollective.org/tutorials/gis-techniques/creating-custom-tools-in-arcgis-model-builder-3/">&lt; Part 2: The Exercise: Analyze and Identify Potential Habitat for Homo Delphinidae</a></p>
+
+<p><strong>Let’s Build That Model!</strong></p>
+
+<p><em>Prepare the Environment</em></p>
+
+<p>The first step is to <strong>Launch ArcMap</strong>. This exercise requires the <strong>spatial analyst extension</strong> so be sure that it’s activated. We want to activate a setting to automatically overwrite the output since we will be running the model multiple times. To do this:</p>
+
+<p>Arc 9.3</p>
+
+<p><strong>Tools &gt; Options &gt; Geoprocessing Tab &gt;</strong> check the <strong>“Overwrite the outputs of geoprocessing operations”</strong> box.</p>
+
+<p>Arc 10</p>
+
+<p><strong>Geoprocess &gt; Geoprocessing Options &gt;</strong> check the <strong>“Overwrite the outputs of geoprocessing operations”</strong> box</p>
+
+<p><em>Create a Personal Toolbox to Store Your Model</em></p>
+
+<p>Go ahead and open ArcToolbox if it is not already open. <strong>Right-click</strong> in the white space and select <strong>Add Toolbox</strong>. This will be the container that stores your models. Navigate to a desired directory, click the <strong>Red Toolbox</strong> icon in the upper right corner to create a new toolbox, and name it <strong>MyTools</strong>. <strong>Select</strong> your new toolbox and click <strong>Open</strong>.</p>
+
+<p>If you look in the ArcToolbox you will see that your new toolbox has been added to the collection of toolboxes.</p>
+
+<p><a href="http://giscollective.org/wp-content/uploads/2012/07/newToolbox.png"><img class="size-medium wp-image-425 aligncenter" title="newToolbox" src="http://giscollective.org/wp-content/uploads/2012/07/newToolbox-255x300.png" alt="" width="255" height="300" /></a></p>
+
+<p>Now, let’s create a model and add it to our new toolbox. To add a new model to your toolbox, <strong>right-click</strong> on your toolbox and select <strong>New &gt; Model</strong>. Selecting this will launch the Model Builder window.</p>
+
+<p><a href="http://giscollective.org/wp-content/uploads/2012/07/modelBuilderWindow.png"><img class="aligncenter size-medium wp-image-431" title="modelBuilderWindow" src="http://giscollective.org/wp-content/uploads/2012/07/modelBuilderWindow-300x219.png" alt="" width="300" height="219" /></a></p>
+
+<p><em>Heads up!</em> If you close the Model Builder window, you’ll need to right-click and select <strong>Edit</strong> to open the window again. If you select the <strong>Open</strong> option, you’ll end up <em>running</em> the model, not <em>editing</em> it. Feel free to try to run the model now, you’ll get an error telling you the model has no parameters.</p>
+
+<p><a href="http://giscollective.org/tutorials/gis-techniques/creating-custom-tools-in-arcgis-model-builder-part-4/">Part 4: Adding Data</a> &gt;</p>
+
+    </div>
+  </div>
+</article>
+
+<aside id="sidebar">
+  <p id="site-description">Collective spatial learning from students and professionals</p>
+  <div id="primary" class="widget-area">
+
+    <h3 class="widget-title">Categories</h3>
+    <ul>
+      <li>list of categories</li>
+    </ul>
+
+    <h3 class="widget-title">Recent posts</h3>
+    <ul>
+      <li>list of recent posts</li>
+    </ul>
+
+    <h3 class="widget-title">Archives</h3>
+    <ul>
+      <li>something that resembles the archives</li>
+    </ul>
+  </div>
+</aside>
+
+<div class="clear"></div>
+</div>
+<footer>
+<div id="copyright">GISCollective.org, 2016</div>
+</footer>
+</div>
+<script src="/public/gisc.js"></script>
+</body>
+</html>

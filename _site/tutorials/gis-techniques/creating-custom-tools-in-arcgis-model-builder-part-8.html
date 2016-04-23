@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GISCollective</title>
+  <meta http-equiv="content-type" charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,600,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href="/public/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar">
+  <div class="wrapper">
+    <div id="branding">
+      <div id="site-title"><h1><a href="/" title="GISC" rel="home">GISC</a></h1></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-expand"><i class="icon hamburger"></i></button>
+      <ul id="menu-gisc-2" class="menu">
+        <li id="menu-item-111" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-111"><a href="/">Home</a></li>
+        <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="/tutorials/">Tutorials</a></li>
+        <li id="menu-item-192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192"><a href="/resources/">Resources</a></li>
+        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+  <div class="wrapper hfeed">
+  <div id="container">
+
+<article id="content">
+  <div class="post type-post status-publish format-standard hentry category-data">
+    <h2 class="entry-title">
+      <a href="/tutorials/gis-techniques/creating-custom-tools-in-arcgis-model-builder-part-8" title="Creating Custom Tools in ArcGIS – Model Builder (Part 8)" rel="bookmark">Creating Custom Tools in ArcGIS – Model Builder (Part 8)</a>
+    </h2>
+
+    <div class="entry-content">
+      <p><a href="http://giscollective.org/tutorials/gis-techniques/creating-custom-tools-in-arcgis-model-builder-part-7/">&lt; Part 7: Bringing It All Together: Combining the Layers</a></p>
+
+<p><strong>Run the Model from the Beginning!</strong></p>
+
+<p>All right! The model is complete! Let’s completely run this sucker from the beginning to end. First off, remove all data layers except the four original ones. In other words, remove everything except DaneProtectedAreas, DaneStreams, DaneLandCover, and danedem.</p>
+
+<p>If the <em>Add to Display</em> option was working for your model, go ahead and right-click all layers that have that option toggled, and disable it. We only want our end result to appear in the map, and don’t need the many layers that it took to get there.</p>
+
+<p>Before running the model, let’s reset it by checking <strong>Validate Entire Model</strong>. Do this by clicking the <strong>Model</strong> menu at the top of Model Builder window, and selecting <strong>Validate Entire Model</strong>. You’ll notice that the drop shadows on the tools and outputs are gone now.</p>
+
+<p>Okay, we’re ready to run! Click the <strong>run button</strong> and watch as the model runs. (In 9.3, the tool icon turns red as it is processing, and adds a drop shadow upon completion of the tool. I’m not sure why it does not do this in Arc10).</p>
+
+<p>Go to <strong>Add Data</strong>  &gt; and add the <strong>GoodHabitat</strong> and <strong>ProtectedHabitat</strong> layers. These are the two layers we are interested in for determining suitable habitat for <em>homo delphinidae</em>. Both layers satisfy our three criteria for suitable habitat!</p>
+
+<p><em>What If It Doesn’t Work!</em></p>
+
+<p>Watch the output in the box while the model is running. If there is an error there will be red text. The program will say that the model-run is complete, even though an error occurred. Beware of this. If an error does occur, read the red text and see where the model broke. Make sure that your files are all in the Dane County GeoDatabase, and that the parameters being passed to them are valid. This is a huge issue and that is why setting your paths and parameters correctly the first time is very important.</p>
+
+<p>If your model does break, make an attempt to fix your issue, and <strong>Validate Entire Model</strong> again, to reset the model.</p>
+
+<p><a href="http://giscollective.org/tutorials/gis-techniques/creating-custom-tools-in-arcgis-model-builder-part-9/">Part 9: Setting Up the Model as a Tool &gt;</a></p>
+
+    </div>
+  </div>
+</article>
+
+<aside id="sidebar">
+  <p id="site-description">Collective spatial learning from students and professionals</p>
+  <div id="primary" class="widget-area">
+
+    <h3 class="widget-title">Categories</h3>
+    <ul>
+      <li>list of categories</li>
+    </ul>
+
+    <h3 class="widget-title">Recent posts</h3>
+    <ul>
+      <li>list of recent posts</li>
+    </ul>
+
+    <h3 class="widget-title">Archives</h3>
+    <ul>
+      <li>something that resembles the archives</li>
+    </ul>
+  </div>
+</aside>
+
+<div class="clear"></div>
+</div>
+<footer>
+<div id="copyright">GISCollective.org, 2016</div>
+</footer>
+</div>
+<script src="/public/gisc.js"></script>
+</body>
+</html>

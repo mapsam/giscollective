@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GISCollective</title>
+  <meta http-equiv="content-type" charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,600,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href="/public/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar">
+  <div class="wrapper">
+    <div id="branding">
+      <div id="site-title"><h1><a href="/" title="GISC" rel="home">GISC</a></h1></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-expand"><i class="icon hamburger"></i></button>
+      <ul id="menu-gisc-2" class="menu">
+        <li id="menu-item-111" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-111"><a href="/">Home</a></li>
+        <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="/tutorials/">Tutorials</a></li>
+        <li id="menu-item-192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192"><a href="/resources/">Resources</a></li>
+        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+  <div class="wrapper hfeed">
+  <div id="container">
+
+<article id="content">
+  <div class="post type-post status-publish format-standard hentry category-data">
+    <h2 class="entry-title">
+      <a href="/tutorials/gis-techniques/bringing-lidar-data-into-arcgis" title="Bringing LiDAR Data into ArcGIS" rel="bookmark">Bringing LiDAR Data into ArcGIS</a>
+    </h2>
+
+    <div class="entry-content">
+      <p><em>In this tutorial, Danielle Lee explains how to bring LiDAR data into ArcGIS. It requires the use of the 3D Analyst extension with ArcGIS, so hopefully you’ve got it!</em></p>
+
+<p><em>To follow along, grab the data from http://lidar.swc.nd.gov/</em></p>
+
+<p><em>The data Danielle used is called 13908001.LAS, so feel free to grab that, or get any other LiDAR data!</em></p>
+
+<p><em>This tutorial was prepared for Arc version 9.3.1 but works with Arc v10.</em></p>
+
+<ol>
+  <li>
+    <p>Turn on the 3D Analyst Extension</p>
+  </li>
+  <li>
+    <p>Determine the Average Point Spacing of your LiDAR data by using the 3D Analyst Tools&gt;Conversion&gt;From File&gt;Point File Information tool if unknown. The point spacing will be in the attribute table of the new Shapefile created.</p>
+  </li>
+</ol>
+
+<p>a. In ArcMap ArcToolbox, browse to 3D Analyst Tools&gt;Conversion&gt;From File&gt; LAS to Multipoint. Choose the LAS files for your area of interest and point spacing, and save as LAS_to_Multipoint.shp.</p>
+
+<p>b. If your LAS data is in ASCII format, use the ASCII 3D to Feature tool.</p>
+
+<ol>
+  <li>Open ArcCatalog and browse to the folder that contains the new multipoint feature LAS_to_Multipoint.shp. Assign a coordinate system to the LAS_to_Multipoint if there is not one already assigned. (in Arc10 you can find the projection in: projectect coordinate systems &gt; state plane &gt; NAD 1983 &gt; NAD 1983 StatePlane North Dakota S FIPS 3302 (US Feet))</li>
+</ol>
+
+<p> </p>
+
+<ol>
+  <li>In the same folder that contains LAS_to_Multipoint, go to File&gt;New&gt;File Geodatabase and name it LiDAR:</li>
+</ol>
+
+<center>
+  <img src="https://s3.amazonaws.com/gisc/wordpressImages/lidar4.jpg" alt="" />
+</center>
+<ol>
+  <li>Right click on the new LiDAR.gdb and go to New&gt;Feature Dataset and name it LiDAR_Files</li>
+</ol>
+
+<p> </p>
+
+<ol>
+  <li>Right click on LiDAR_Files Feature Dataset and go to Import&gt;Feature class (single), importing LAS_to_Multipoint.shp. You may also import breaklines, clipping boundaries, and any other files that cover the project area. Click through the wizard to completion.</li>
+</ol>
+
+<p> </p>
+
+<ol>
+  <li>Right click on the LiDAR_Files Feature Dataset and go to New&gt;Terrain</li>
+</ol>
+
+<p> </p>
+
+<ol>
+  <li>This is the Terrain Wizard. See http://webhelp.esri.com/arcgisdesktop/9.3/index.cfm?id=3413&amp;pid=3410&amp;topicname=Building_a_terrain_dataset_with_the_terrain_wizard for detailed information. Name the terrain Terrain and select all the LAS_to_Multipoint and breaklines.</li>
+</ol>
+
+<p>a. The pyramid levels are simply for display purposes, so only create one pyramid level (this will drastically cut down on processing time). Click Calculate Pyramid Properties to create pyramid (ensure that you have at least 1). Click Next, view the summary, and click Finish.</p>
+
+<p>b. When the Wizard is complete, it will take a while to create the actual terrain. Click Yes to build now.</p>
+
+<center>
+  <img src="https://s3.amazonaws.com/gisc/wordpressImages/lidar8.jpg" alt="" />
+</center>
+<ol>
+  <li>When your</li>
+</ol>
+
+<p><em>Terrain</em> is created, bring it into ArcMap to check that it looks reasonable.</p>
+
+<center>
+  <img src="https://s3.amazonaws.com/gisc/wordpressImages/lidar9.jpg" alt="" />
+</center>
+<ol>
+  <li>If everything looks good, go back to Catalog, convert to Raster or to TIN by using 3D Analyst Tools&gt; Conversion&gt; From Terrain&gt; Terrain to Raster/TIN.</li>
+</ol>
+
+<p><em>Note: When working with large terrains, you may want to click Environments&gt;Terrain and limit memory use for terrain analysis.</em></p>
+
+<center>
+  <img src="https://s3.amazonaws.com/gisc/wordpressImages/lidar10.jpg" alt="" />
+</center>
+
+<p><strong>Supplementary Info: Importing ASCI LIDAR Break Lines</strong></p>
+
+<p>If break lines are in this ASCII text format (if they are not in this format, the text file must first be modified):</p>
+
+<center>
+  <img src="https://s3.amazonaws.com/gisc/wordpressImages/lidar11.jpg" alt="" />
+</center>
+<p>Use the 3-D Analyst “ASCII 3D to Feature Class” conversion tool:</p>
+
+<center>
+  <img src="https://s3.amazonaws.com/gisc/wordpressImages/lidar12.jpg" alt="" />
+</center>
+
+<p><strong>Options:</strong> Generate &amp; Polyline</p>
+
+<center>
+  <img src="https://s3.amazonaws.com/gisc/wordpressImages/lidar13.jpg" alt="" />
+</center>
+
+    </div>
+  </div>
+</article>
+
+<aside id="sidebar">
+  <p id="site-description">Collective spatial learning from students and professionals</p>
+  <div id="primary" class="widget-area">
+
+    <h3 class="widget-title">Categories</h3>
+    <ul>
+      <li>list of categories</li>
+    </ul>
+
+    <h3 class="widget-title">Recent posts</h3>
+    <ul>
+      <li>list of recent posts</li>
+    </ul>
+
+    <h3 class="widget-title">Archives</h3>
+    <ul>
+      <li>something that resembles the archives</li>
+    </ul>
+  </div>
+</aside>
+
+<div class="clear"></div>
+</div>
+<footer>
+<div id="copyright">GISCollective.org, 2016</div>
+</footer>
+</div>
+<script src="/public/gisc.js"></script>
+</body>
+</html>

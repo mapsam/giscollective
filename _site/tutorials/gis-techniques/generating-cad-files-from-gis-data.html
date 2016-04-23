@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GISCollective</title>
+  <meta http-equiv="content-type" charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,600,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href="/public/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar">
+  <div class="wrapper">
+    <div id="branding">
+      <div id="site-title"><h1><a href="/" title="GISC" rel="home">GISC</a></h1></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-expand"><i class="icon hamburger"></i></button>
+      <ul id="menu-gisc-2" class="menu">
+        <li id="menu-item-111" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-111"><a href="/">Home</a></li>
+        <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="/tutorials/">Tutorials</a></li>
+        <li id="menu-item-192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192"><a href="/resources/">Resources</a></li>
+        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+  <div class="wrapper hfeed">
+  <div id="container">
+
+<article id="content">
+  <div class="post type-post status-publish format-standard hentry category-data">
+    <h2 class="entry-title">
+      <a href="/tutorials/gis-techniques/generating-cad-files-from-gis-data" title="Generating CAD Files from GIS Data" rel="bookmark">Generating CAD Files from GIS Data</a>
+    </h2>
+
+    <div class="entry-content">
+      <p><strong>Generating CAD Files from GIS Data</strong></p>
+
+<p><em>This tutorial explains how to generate CAD files from GIS data, focusing on using Contour Line data</em></p>
+
+<p>If you ever work with civil engineers you will quickly learn that they live in the world of Computer Aided Graphics (CAD) software, and have little to no knowledge of GIS. They may request you to prepare data for them, such as by generating contour lines or simply providing them with building footprint data.</p>
+
+<p>Popular software such as AutoCAD can read and display geographic data such as shapefiles, but an issue with the CAD software is that it does not bring in the associated feature attributes of the file. If you are providing the engineers with contour lines, it is crucial that the elevation attributes of each line are included in the file.</p>
+
+<p>So if engineers can’t get feature attribute data from shapefiles, how are we supposed to provide them GIS support? Fortunately, ArcGIS provides a few tools that aid us in the process.</p>
+
+<p>The most obvious tool we would want to use is the <strong>Export to CAD</strong> tool, found in <strong>Conversion Tools &gt; To CAD &gt; Export to CAD</strong>. Double-clicking on the tool opens a dialog box which prompts the user to specify input data to be combined into one CAD file. There are many Output Type options to choose from, so make sure you know what format you need the CAD file to be in.</p>
+
+<p><a href="http://giscollective.org/wp-content/uploads/2012/09/export-to-cad.jpg"><img class="wp-image-994 aligncenter" title="export to cad" src="http://giscollective.org/wp-content/uploads/2012/09/export-to-cad.jpg" alt="" width="436" height="281" /></a> HOWEVER, before performing the Export to CAD operation, we need to some pre-processing to make sure our attribute data is retained! We could run this operation on a shapefile with no pre-processing if the data did not need attributes, such as building footprints. I.e, Go ahead and use this operation if you don’t need to retain attribute data.</p>
+
+<p>If you’re working with data such as contours and need to retain the elevation data, we have to run one operation on the data first before converting to CAD. The operation we need to run is called <strong>Feature to 3D by Attribute</strong>, located in the ArcToolbox under 3D Analyst Tools &gt; 3D Features &gt; Feature to 3D By Attribute. Essentially, this tool gives your data 3D attribute, and you specify what field to turn into the 3D field.</p>
+
+<p><a href="http://giscollective.org/wp-content/uploads/2012/09/to-3d.jpg"><img class="aligncenter  wp-image-992" title="to 3d" src="http://giscollective.org/wp-content/uploads/2012/09/to-3d.jpg" alt="" width="376" height="246" /></a></p>
+
+<p>So, the steps to turning contour data into CAD data are as follows:</p>
+
+<ol>
+  <li>Load Contour data into ArcMap.</li>
+  <li>In the ArcToolbox, open the Feature to 3D by Attribute tool (3D Analyst Tools &gt; 3D Features &gt; Feature to 3D by Attribute)</li>
+  <li>For the <strong>Input Features</strong> field, select your contour file. For the <strong>Output Feature Class</strong> select the directory you want your new 3D enabled file to be stored, and give it a name. For the <strong>Height Field</strong> select the elevation field from your input file.</li>
+  <li>Click Ok.</li>
+  <li>Next in the ArcToolbox, open the <strong>Export to CAD</strong> tool (Conversion Tools &gt; To CAD &gt; Export to CAD)</li>
+  <li>For the <strong>Input Features</strong> field, select your newly generated, 3D enabled contour line file. Specify the <strong>Output Type</strong> and then choose the directory where you want to store the CAD file and give it a name.</li>
+  <li>Click Ok.</li>
+  <li>Send the file to your CAD user after the <strong>Export to CAD</strong> operation runs!</li>
+</ol>
+
+<p>For those interested, I have created a tool to automate the contour generation and exportation to CAD process with Model Builder. It is more complicated than converting to 3D and exporting to CAD.</p>
+
+<p>The model requires a DEM and project area (polygon) for its inputs. It clips the DEM to the project area, generates contours from the clipped area, and smooths the contours first, before converting to 3D by attribute and exporting to CAD.</p>
+
+<p>You can download the toolbox <a href="https://s3.amazonaws.com/yorbaLinda/Contour+Generation.zip">here</a>.</p>
+
+<p>Also included in the toolbox is a tool for generating contours from a DEM for a project area, but does not perform the processing for exporting to CAD. I use that tool for when I need contours but don’t need to send it to CAD users.</p>
+
+<p>Here is the Model Builder flow chart: <a href="http://giscollective.org/wp-content/uploads/2012/09/flowchart.jpg"><img class="aligncenter size-full wp-image-991" title="flowchart" src="http://giscollective.org/wp-content/uploads/2012/09/flowchart.jpg" alt="" width="977" height="322" /></a></p>
+
+<p>Here is a screenshot of the custom tool for generating contours and exporting to CAD:</p>
+
+<p><a href="http://giscollective.org/wp-content/uploads/2012/09/tool-box.jpg"><img class="wp-image-993 aligncenter" title="tool box" src="http://giscollective.org/wp-content/uploads/2012/09/tool-box.jpg" alt="" width="519" height="335" /></a></p>
+
+<p>To add the tools to Arc, right-click on the <strong>ArcToolbox</strong> and select <strong>Add Toolbox</strong>. Navigate to the directory where the toolbox is saved, click on the toolbox, and click Open. The toolbox will now be included in the list of toolboxes in the ArcToolbox!</p>
+
+<p align="center">
+</p>
+
+    </div>
+  </div>
+</article>
+
+<aside id="sidebar">
+  <p id="site-description">Collective spatial learning from students and professionals</p>
+  <div id="primary" class="widget-area">
+
+    <h3 class="widget-title">Categories</h3>
+    <ul>
+      <li>list of categories</li>
+    </ul>
+
+    <h3 class="widget-title">Recent posts</h3>
+    <ul>
+      <li>list of recent posts</li>
+    </ul>
+
+    <h3 class="widget-title">Archives</h3>
+    <ul>
+      <li>something that resembles the archives</li>
+    </ul>
+  </div>
+</aside>
+
+<div class="clear"></div>
+</div>
+<footer>
+<div id="copyright">GISCollective.org, 2016</div>
+</footer>
+</div>
+<script src="/public/gisc.js"></script>
+</body>
+</html>

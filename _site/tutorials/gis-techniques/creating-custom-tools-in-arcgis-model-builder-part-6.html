@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GISCollective</title>
+  <meta http-equiv="content-type" charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,600,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href="/public/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar">
+  <div class="wrapper">
+    <div id="branding">
+      <div id="site-title"><h1><a href="/" title="GISC" rel="home">GISC</a></h1></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-expand"><i class="icon hamburger"></i></button>
+      <ul id="menu-gisc-2" class="menu">
+        <li id="menu-item-111" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-111"><a href="/">Home</a></li>
+        <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="/tutorials/">Tutorials</a></li>
+        <li id="menu-item-192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192"><a href="/resources/">Resources</a></li>
+        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+  <div class="wrapper hfeed">
+  <div id="container">
+
+<article id="content">
+  <div class="post type-post status-publish format-standard hentry category-data">
+    <h2 class="entry-title">
+      <a href="/tutorials/gis-techniques/creating-custom-tools-in-arcgis-model-builder-part-6" title="Creating Custom Tools in ArcGIS – Model Builder (Part 6)" rel="bookmark">Creating Custom Tools in ArcGIS – Model Builder (Part 6)</a>
+    </h2>
+
+    <div class="entry-content">
+      <p><a href="http://giscollective.org/tutorials/gis-techniques/creating-custom-tools-in-arcgis-model-builder-part-5/">&lt; Part 5: Criteria 2: Elevations Under 275 Meters</a></p>
+
+<p><strong>Criteria 3: Habitat within 500 ft of a stream</strong></p>
+
+<p>All right! Two criteria down! We are well on the way to completing our model, and identifying suitable habitat for <em>Homo Delphinidae</em>. Now let’s identify areas in the county that are within 500 feet of a stream.</p>
+
+<p>Drag the <strong>streams</strong> layers into the Model Builder window and rename it to <strong>streams</strong>. To find areas that are 500 feet from a stream we will perform a simple <strong>buffer</strong> operation. Add the tool to the model from the ArcToolbox: <strong>Analysis Tools &gt; Proximity &gt; Buffer</strong>.</p>
+
+<p><strong>Double-click</strong> the buffer tool. Populate the tool’s parameters as follows:</p>
+
+<ul>
+  <li>Input Features: streams (with the recycle icon next to it)</li>
+  <li>Output Feature Class: StreamBuffer</li>
+  <li>Distance: 500 Feet</li>
+  <li>Side Type: Full (default value)</li>
+  <li>End Type: Round (default value)</li>
+  <li>Dissolve Type: ALL</li>
+</ul>
+
+<p>The <strong>Dissolve Type</strong> specifies what type of feature output the buffer operation will result in. We selected ALL, because we want all the buffered features dissolved together into one single feature, and all the overlap to be removed. Click <strong>OK</strong>, check Add to Display on the streamBuffer output, and <strong>run</strong> the model. (Add the layer to the Table of Contents and check it out!)</p>
+
+<p><img class="aligncenter" src="https://lh3.googleusercontent.com/MBXgGhVv3GpTLjxOg1cwqIiC_sWk5Sm1EyOSvtTF3wbbxZCk3F82pz6Twt-5CtZeSyQA6f6e-CN9_xdlmsAFyfrVA0EbVjlqGtwfGFzxIQX7X5_jFk0" alt="" width="486px;" height="476px;" /></p>
+
+<p>Keep in mind that this output is different, because it is in vector format. Our plan is to combine these three layers (the Wetlands, the Elevation &lt; 275 meters, and the stream buffer) to see where they overlap, because where they overlap indicates a satisfaction of all three criteria for the species’ habitat.</p>
+
+<p>In order to combine the streams buffer layer with the others, we have to <strong>rasterize</strong> it, since to combine the files they must all be in the same format, and the other two data sources are raster files.</p>
+
+<p>Add the <strong>Polygon to Raster</strong> tool to the model from the ArcToolbox: <strong>Conversion Tools &gt; To Raster &gt; Polygon to Raster.</strong></p>
+
+<p><strong>Double-click</strong> the Polygon to Raster tool in the Model Builder window, and set the <strong>Input Features</strong> to StreamsBuffer (with the recycle icon next ot it). The rest of the fields will automatically fill in after you select the input feature.</p>
+
+<p>Change the <strong>Output Raster Dataset</strong> name to <strong>BufferRaster</strong>. The cell size of the other raster layers is 30 x 30 meters, so set the <strong>cellsize</strong> field to <strong>98.4251</strong>. Recall that the streams layer is in feet, so we needed to do some unit conversion to get the cell size in meters.</p>
+
+<p><strong>Click Ok</strong>. Before running the model, let’s add another conditional function to the model to convert the output to a Boolean value (1,0). Again, add the <strong>CON</strong> tool to the model. It can be found in the ArcToolbox under <strong>Spatial Analyst &gt; Conditonal &gt; Con</strong>.</p>
+
+<p><strong>Double-click</strong> the con tool, and set the input as <strong>StreamBuffer_PolygonToRaster</strong> (the output of rasterizing the streams layer), the <strong>Input True</strong> to 1, the <strong>Input False</strong> to 0, and the output name to <strong>GoodStreamDis</strong>. We do not need an expression in this case.</p>
+
+<p><strong>Run</strong> the model and check the output. Add it to the Table of Contents.</p>
+
+<p><img class="aligncenter" src="https://lh4.googleusercontent.com/ksv2Ub71SGFBSrLfif8j2KSpIICMyFCCyenyrmKXpqtIffZTixJS-KZfZZiljjnxM3Cv19vOyDC4q53puGw79EVA1oQBhGgDYjGH5xzOVBXJN47s4rE" alt="" width="540px;" height="283px;" /><a href="http://giscollective.org/tutorials/gis-techniques/creating-custom-tools-in-arcgis-model-builder-part-7/">Part 7: Bringing It All Together – Combining the Layers &gt;</a></p>
+
+    </div>
+  </div>
+</article>
+
+<aside id="sidebar">
+  <p id="site-description">Collective spatial learning from students and professionals</p>
+  <div id="primary" class="widget-area">
+
+    <h3 class="widget-title">Categories</h3>
+    <ul>
+      <li>list of categories</li>
+    </ul>
+
+    <h3 class="widget-title">Recent posts</h3>
+    <ul>
+      <li>list of recent posts</li>
+    </ul>
+
+    <h3 class="widget-title">Archives</h3>
+    <ul>
+      <li>something that resembles the archives</li>
+    </ul>
+  </div>
+</aside>
+
+<div class="clear"></div>
+</div>
+<footer>
+<div id="copyright">GISCollective.org, 2016</div>
+</footer>
+</div>
+<script src="/public/gisc.js"></script>
+</body>
+</html>

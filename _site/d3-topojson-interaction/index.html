@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GISCollective</title>
+  <meta http-equiv="content-type" charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,600,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href="/public/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar">
+  <div class="wrapper">
+    <div id="branding">
+      <div id="site-title"><h1><a href="/" title="GISC" rel="home">GISC</a></h1></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-expand"><i class="icon hamburger"></i></button>
+      <ul id="menu-gisc-2" class="menu">
+        <li id="menu-item-111" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-111"><a href="/">Home</a></li>
+        <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="/tutorials/">Tutorials</a></li>
+        <li id="menu-item-192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192"><a href="/resources/">Resources</a></li>
+        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+  <div class="wrapper hfeed">
+  <div id="container">
+
+<article id="content">
+  <div class="post type-post status-publish format-standard hentry category-data">
+    <h2 class="entry-title">
+      <a href="/d3-topojson-interaction/" title="D3: Topojson Interaction" rel="bookmark">D3: Topojson Interaction</a>
+    </h2>
+
+    <div class="entry-content">
+      <div class="entry-meta">
+  <span class="meta-prep meta-prep-author">By </span>
+  <span class="author"><a class="url fn n" href="/Sam Matthews" title="View all articles by Irina Papuc">Sam Matthews</a></span>
+  <span class="meta-sep"> | </span>
+  <span class="meta-prep meta-prep-entry-date">Published </span>
+  <span class="entry-date"><abbr class="published" title="2016-01-05T16:50:01-0500">2013-08-15 03:00:57 -0700</abbr></span>
+</div>
+
+<p><a href="http://bl.ocks.org/svmatthews/6083585">bl.ock</a>, <a href="https://gist.github.com/svmatthews/6083585">gist</a></p>
+
+<p>Interacting with the geographic data on your map is what gives web-maps a step up compared to static maps. All of that spatial information can hold it’s own attribute info, much like shapefiles. And all of that information is accessible on browser side with D3 and array interactions.</p>
+
+<p>Simply, as the user interacts with the map, you can set which information should be returned to them. To take it one step further, you can use this information to computer new relationships and trends that effectively give web-mapping with spatial data a GIS feel. Upon updating your data, all of your spatial statistics will update as well, which doesn’t require you to re import your data as if you were creating a static map.</p>
+
+<p>Taking from the previous example, <a href="http://giscollective.org/d3-basemap-with-top/">how to render topojson data</a>, the interaction portion is actually just a simple addition, but is only possible with the array created by D3. We’ll add the action item <code class="highlighter-rouge">.on('mouseover', ...)</code> to the data rendering process:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>.on('mouseover', function(d) {
+    // grab specific data
+    // use specific data
+})
+</code></pre>
+</div>
+
+<p>The interactions with geographic data are numerous: <code class="highlighter-rouge">'mouseover', 'mouseout', 'mousedown', 'mouseup', 'mousemove'</code>. The following example looks for the <code class="highlighter-rouge">STATE_ABBR</code> property, passes it to a specific element in the HTML, and changes the style of the SVG element on the cursor entering and exiting the element.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>d3.json('us.json', function(error, us) {
+    svg.selectAll('.states')
+        .data(topojson.feature(us, us.objects.usStates).features)
+        .enter()
+        .append('path')
+        .attr('class', 'states')
+        .attr('d', path)
+        .on('mouseover', function(d){
+            // get state abbreviation
+            var name = d.properties.STATE_ABBR;
+            // add to element
+            return document.getElementById('name').innerHTML=name; 
+    });
+});
+</code></pre>
+</div>
+
+<p>A <em>key component</em> to this process is the difference between <strong><code class="highlighter-rouge">.data()</code></strong> and <strong><code class="highlighter-rouge">.datum()</code></strong>. In the topojson rendering tutorial, I used <code class="highlighter-rouge">.datum()</code> to define the source of the geometry. Datum is the singular of data. Therefore, your data object is treated as a single SVG object. Using <code class="highlighter-rouge">.data()</code> treats each iteration of the data as its own SVG element, allowing you to interact with each separately. The code difference is minimal, but the effect is enormous. See what <a href="http://bl.ocks.org/svmatthews/6195407">datum</a> would do to your interactions with the svg canvas.</p>
+
+    </div>
+  </div>
+</article>
+
+<aside id="sidebar">
+  <p id="site-description">Collective spatial learning from students and professionals</p>
+  <div id="primary" class="widget-area">
+
+    <h3 class="widget-title">Categories</h3>
+    <ul>
+      <li>list of categories</li>
+    </ul>
+
+    <h3 class="widget-title">Recent posts</h3>
+    <ul>
+      <li>list of recent posts</li>
+    </ul>
+
+    <h3 class="widget-title">Archives</h3>
+    <ul>
+      <li>something that resembles the archives</li>
+    </ul>
+  </div>
+</aside>
+
+<div class="clear"></div>
+</div>
+<footer>
+<div id="copyright">GISCollective.org, 2016</div>
+</footer>
+</div>
+<script src="/public/gisc.js"></script>
+</body>
+</html>

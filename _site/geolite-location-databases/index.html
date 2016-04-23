@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GISCollective</title>
+  <meta http-equiv="content-type" charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,600,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href="/public/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar">
+  <div class="wrapper">
+    <div id="branding">
+      <div id="site-title"><h1><a href="/" title="GISC" rel="home">GISC</a></h1></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-expand"><i class="icon hamburger"></i></button>
+      <ul id="menu-gisc-2" class="menu">
+        <li id="menu-item-111" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-111"><a href="/">Home</a></li>
+        <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="/tutorials/">Tutorials</a></li>
+        <li id="menu-item-192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192"><a href="/resources/">Resources</a></li>
+        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+  <div class="wrapper hfeed">
+  <div id="container">
+
+<article id="content">
+  <div class="post type-post status-publish format-standard hentry category-data">
+    <h2 class="entry-title">
+      <a href="/geolite-location-databases/" title="GeoLite Location Databases" rel="bookmark">GeoLite Location Databases</a>
+    </h2>
+
+    <div class="entry-content">
+      <div class="entry-meta">
+  <span class="meta-prep meta-prep-author">By </span>
+  <span class="author"><a class="url fn n" href="/Sam Matthews" title="View all articles by Irina Papuc">Sam Matthews</a></span>
+  <span class="meta-sep"> | </span>
+  <span class="meta-prep meta-prep-entry-date">Published </span>
+  <span class="entry-date"><abbr class="published" title="2016-01-05T16:50:01-0500">2013-06-23 13:13:35 -0700</abbr></span>
+</div>
+
+<p>Sometimes you just need file of cities and their lat/long locations. Thanks to <a href="http://dev.maxmind.com/geoip/legacy/geolite/">MaxMind</a> you can download an enormous <strong>CSV</strong> list of political entities. The city location csv file is about 22MB and can be used for creating or adding to any database.</p>
+
+<p>From Max Mind:</p>
+
+<blockquote>
+  <p>The GeoLite databases are our <strong>free</strong> IP geolocation databases. They are updated on the first Tuesday of each month. These databases are offered in the same binary and csv formats as our subscription databases. Any code which can read the subscription databases can also read the GeoLite databases.</p>
+</blockquote>
+
+<p><em>Warning: there are many cities with the same name so joins will have to be carefully executed.</em></p>
+
+<p>I uploaded the entire database to a Google Fusion Table, which is designed to look through large databases; in this case <a href="https://www.google.com/fusiontables/DataSource?docid=1xSYC9KHUS6tb73PasrSfNdAb2Tgi0hESIjGRfuI">419,433 rows of cities</a>.</p>
+
+<p>The GeoLite City Location columns:</p>
+
+<ul>
+  <li>Country</li>
+  <li>Region</li>
+  <li>City</li>
+  <li>Postal Code</li>
+  <li>Latitude</li>
+  <li>Longitude</li>
+  <li>Metro Code (<em>if applicable</em>)</li>
+  <li>Area Code (<em>if applicable</em>)</li>
+</ul>
+
+<p>I came across this because I was having a hard time finding a good geocoder to get the information I wanted. This is a geocoder hack-around, basically. Enjoy!</p>
+
+    </div>
+  </div>
+</article>
+
+<aside id="sidebar">
+  <p id="site-description">Collective spatial learning from students and professionals</p>
+  <div id="primary" class="widget-area">
+
+    <h3 class="widget-title">Categories</h3>
+    <ul>
+      <li>list of categories</li>
+    </ul>
+
+    <h3 class="widget-title">Recent posts</h3>
+    <ul>
+      <li>list of recent posts</li>
+    </ul>
+
+    <h3 class="widget-title">Archives</h3>
+    <ul>
+      <li>something that resembles the archives</li>
+    </ul>
+  </div>
+</aside>
+
+<div class="clear"></div>
+</div>
+<footer>
+<div id="copyright">GISCollective.org, 2016</div>
+</footer>
+</div>
+<script src="/public/gisc.js"></script>
+</body>
+</html>

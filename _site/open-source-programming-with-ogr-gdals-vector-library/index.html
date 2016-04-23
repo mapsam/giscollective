@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GISCollective</title>
+  <meta http-equiv="content-type" charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,600,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href="/public/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar">
+  <div class="wrapper">
+    <div id="branding">
+      <div id="site-title"><h1><a href="/" title="GISC" rel="home">GISC</a></h1></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-expand"><i class="icon hamburger"></i></button>
+      <ul id="menu-gisc-2" class="menu">
+        <li id="menu-item-111" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-111"><a href="/">Home</a></li>
+        <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="/tutorials/">Tutorials</a></li>
+        <li id="menu-item-192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192"><a href="/resources/">Resources</a></li>
+        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+  <div class="wrapper hfeed">
+  <div id="container">
+
+<article id="content">
+  <div class="post type-post status-publish format-standard hentry category-data">
+    <h2 class="entry-title">
+      <a href="/open-source-programming-with-ogr-gdals-vector-library/" title="Open Source Programming with OGR (GDAL&#8217;s vector library)" rel="bookmark">Open Source Programming with OGR (GDAL&#8217;s vector library)</a>
+    </h2>
+
+    <div class="entry-content">
+      <div class="entry-meta">
+  <span class="meta-prep meta-prep-author">By </span>
+  <span class="author"><a class="url fn n" href="/Chandler" title="View all articles by Irina Papuc">Chandler</a></span>
+  <span class="meta-sep"> | </span>
+  <span class="meta-prep meta-prep-entry-date">Published </span>
+  <span class="entry-date"><abbr class="published" title="2016-01-05T16:50:01-0500">2013-06-18 06:47:59 -0700</abbr></span>
+</div>
+
+<p>I decided it could be beneficial to the community to provide the geoprocessing scripts I created using GDAL’s vector library, OGR, after a member of the <a href="http://www.linkedin.com/groups/GIS-Geography-3887350?trk=myg_ugrp_ovr">GIS and Geography</a> group on LinkedIn posted a question about geoprocessing with GDAL. GDAL/OGR can be a challenge to learn because of the scarcity of online examples, so I hope I am able to provide a little bit more to help those beginning to learn the ins and outs of GDAL and open source GIS programming.</p>
+
+<p>I uploaded the example scripts to a [I decided it could be beneficial to the community to provide the geoprocessing scripts I created using GDAL’s vector library, OGR, after a member of the <a href="http://www.linkedin.com/groups/GIS-Geography-3887350?trk=myg_ugrp_ovr">GIS and Geography</a> group on LinkedIn posted a question about geoprocessing with GDAL. GDAL/OGR can be a challenge to learn because of the scarcity of online examples, so I hope I am able to provide a little bit more to help those beginning to learn the ins and outs of GDAL and open source GIS programming.</p>
+
+<p>I uploaded the example scripts to a](https://github.com/csterling/ogrTools) for everyone to access. I hope they can help provide insight into how one could best utilize the geoprocessing tools within GDAL.</p>
+
+<p>The scripts in the repository show how to perform the following geoprocessing tasks with GDAL/OGR:</p>
+
+<ul id="docs-internal-guid-52f54ec4-589b-fe7b-59ac-5d2e7f094fd3">
+  <ul>
+    <li dir="ltr">
+      <p dir="ltr">
+        Append &#8211; Adds one geometry or set of geometries to another.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Buffer &#8211; Creates a user-specified buffer (polygon) around the input geometry. Erosion can be achieved by passing a negative value to the buffer parameter.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Centroid &#8211; Returns or generates a point of an object’s geometric centroid/center.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Contains &#8211; Tests whether one geometry contains another.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Crosses &#8211; Tests whether one geometry crosses another.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Disjoint &#8211; Tests for disjointness between two geometries.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Distance &#8211; Finds and displays the shortest distance between two geometries.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Difference &#8211; Removes a section of a polygon where two geometries overlap.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Equals &#8211; Tests whether two geometries are equal or not.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Get Envelope &#8211; Returns the bounding envelope for a specific geometry
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Get Fields &#8211; Returns all fields within a specific file.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Get Layer Extent &#8211; Returns the extent of the entire layer
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Get Unique Values &#8211; Returns a list of all unique values within a specified field
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Intersect &#8211; Tests for intersection between two geometries.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Intersection &#8211; Computes a geometric intersection of the input features. Features or portions of features which overlap in all layers and/or feature classes are written to the output feature class.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Simplify &#8211; Creates a simplified representation of the geometric object. All points in the simplified object will be within the tolerance distance (which is set by the user) of the original geometry.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Symmetric Difference &#8211; Removes a section of a polygon where two geometries overlap.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      <p dir="ltr">
+        Union &#8211; Returns a representation of the union of the given geometric objects.
+      </p>
+    </li>
+    
+    <li dir="ltr">
+      Within &#8211; Tests whether one geometry is within another.
+    </li>
+  </ul>
+</ul>
+
+    </div>
+  </div>
+</article>
+
+<aside id="sidebar">
+  <p id="site-description">Collective spatial learning from students and professionals</p>
+  <div id="primary" class="widget-area">
+
+    <h3 class="widget-title">Categories</h3>
+    <ul>
+      <li>list of categories</li>
+    </ul>
+
+    <h3 class="widget-title">Recent posts</h3>
+    <ul>
+      <li>list of recent posts</li>
+    </ul>
+
+    <h3 class="widget-title">Archives</h3>
+    <ul>
+      <li>something that resembles the archives</li>
+    </ul>
+  </div>
+</aside>
+
+<div class="clear"></div>
+</div>
+<footer>
+<div id="copyright">GISCollective.org, 2016</div>
+</footer>
+</div>
+<script src="/public/gisc.js"></script>
+</body>
+</html>

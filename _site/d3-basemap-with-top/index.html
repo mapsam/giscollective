@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GISCollective</title>
+  <meta http-equiv="content-type" charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,600,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+  <link href="/public/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar">
+  <div class="wrapper">
+    <div id="branding">
+      <div id="site-title"><h1><a href="/" title="GISC" rel="home">GISC</a></h1></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-expand"><i class="icon hamburger"></i></button>
+      <ul id="menu-gisc-2" class="menu">
+        <li id="menu-item-111" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-111"><a href="/">Home</a></li>
+        <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="/tutorials/">Tutorials</a></li>
+        <li id="menu-item-192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192"><a href="/resources/">Resources</a></li>
+        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-108"><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+  <div class="wrapper hfeed">
+  <div id="container">
+
+<article id="content">
+  <div class="post type-post status-publish format-standard hentry category-data">
+    <h2 class="entry-title">
+      <a href="/d3-basemap-with-top/" title="D3: Basemap With Topojson" rel="bookmark">D3: Basemap With Topojson</a>
+    </h2>
+
+    <div class="entry-content">
+      <div class="entry-meta">
+  <span class="meta-prep meta-prep-author">By </span>
+  <span class="author"><a class="url fn n" href="/Sam Matthews" title="View all articles by Irina Papuc">Sam Matthews</a></span>
+  <span class="meta-sep"> | </span>
+  <span class="meta-prep meta-prep-entry-date">Published </span>
+  <span class="entry-date"><abbr class="published" title="2016-01-05T16:50:01-0500">2013-08-05 04:18:31 -0700</abbr></span>
+</div>
+
+<p dir="ltr">
+  <a href="http://giscollective.org/d3">D3 Tutorials</a> : Example 003 ( <a href="http://bl.ocks.org/svmatthews/6081504">bl.ock</a> | <a href="https://gist.github.com/svmatthews/6081504">gist</a> )
+</p>
+
+<p>To get geodata to render properly in D3, there are some key properties you will have to define first:</p>
+
+<ul>
+  <li>Canvas dimensions (width, height)</li>
+  <li>SVG Canvas</li>
+  <li>Projection</li>
+  <li>Path</li>
+  <li>path/to/geodata.file</li>
+</ul>
+
+<p>Typically geodata has come in geojson format (an extension of json). It has been an incredibly useful format for quickly rendering geographic data on the web. It’s fast, to be sure, but D3 has taken the geojson one step further and now we have topojson (learn about geojson &gt; topojson conversion [<em>coming soon</em>]), which has significantly decreased file size for polygonal geographic data. These tutorials will use topojson format for land basemap rendering. Be sure to add the topojson extension library to your header <strong>after</strong> you have loaded the d3 library:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script src="http://d3js.org/topojson.v1.min.js"&gt;&lt;/script&gt;
+</code></pre>
+</div>
+
+<p>There are some variables in here that will definitely require some playing around with depending on what you are trying to show. One of the best things d3.geo has going for it is the defining of projections. This gives d3 (and svg in general) an advantage to normal tile-based mapping because you can display different parts of the world in the geographic extent that suits that area best. Take a look at the <a href="https://github.com/mbostock/d3/wiki/Geo-Projections">projections that come built in</a> with d3.geo and the <a href="https://github.com/d3/d3-geo-projection/">projections extension</a>.</p>
+
+<p dir="ltr">
+  So, let’s set up those key components.
+</p>
+
+<h2 id="javascript">Javascript</h2>
+
+<p><strong>Canvas Dimensions</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var width = 960;
+var height = 500;
+</code></pre>
+</div>
+
+<p><strong>SVG</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var svg = d3.select('body').append('svg')
+    .attr('width', width)
+    .attr('height', height);
+</code></pre>
+</div>
+
+<p><strong>Projection</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var projection = d3.geo.albersUsa()
+    .scale(1000)
+    .translate([width / 2, height / 2]); 
+    // https://github.com/mbostock/d3/wiki/Geo-Projections#wiki-translate
+</code></pre>
+</div>
+
+<p><strong>Path</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var path = d3.geo.path()
+    .projection(projection);
+</code></pre>
+</div>
+
+<p><strong>Data (Topojson)</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>d3.json('js/world.json', function(error, us) {
+    svg.append('path')
+        .datum(topojson.feature(us, us.objects.state))
+        .attr('class', 'states') // defined in CSS
+        .attr('d', path);
+});
+</code></pre>
+</div>
+
+<h2 id="css">CSS</h2>
+
+<pre>.states {
+    fill: #e5e5e5;
+    stroke: #fff;
+    stroke-width: 2px;
+}</pre>
+
+<p>Depending on the scale of your project, the javascript can sit within the body of your `index.html` file or it can be within a separate file if you have more functionality to build into the map.</p>
+
+<p><a href="bl.ocks.org/svmatthews/6081504">View the working file</a> on bl.ocks.org.&lt;/p&gt;</p>
+
+    </div>
+  </div>
+</article>
+
+<aside id="sidebar">
+  <p id="site-description">Collective spatial learning from students and professionals</p>
+  <div id="primary" class="widget-area">
+
+    <h3 class="widget-title">Categories</h3>
+    <ul>
+      <li>list of categories</li>
+    </ul>
+
+    <h3 class="widget-title">Recent posts</h3>
+    <ul>
+      <li>list of recent posts</li>
+    </ul>
+
+    <h3 class="widget-title">Archives</h3>
+    <ul>
+      <li>something that resembles the archives</li>
+    </ul>
+  </div>
+</aside>
+
+<div class="clear"></div>
+</div>
+<footer>
+<div id="copyright">GISCollective.org, 2016</div>
+</footer>
+</div>
+<script src="/public/gisc.js"></script>
+</body>
+</html>
