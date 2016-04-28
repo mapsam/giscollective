@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+{{content}}
+
+<div class="categories" id="categories"></div>
+
+<script>
+var bucket = document.getElementById('categories');
+var data = {
+{% for cat in site.categories %}
+  {% assign name = cat[0] %}
+  '{{name}}': [
+    {% for post in site.categories[name] %}
+      {
+        title: '{{post.title}}',
+        date: '{{post.date | date: '%B %d, %Y'}}',
+        url: '{{post.url}}'
+      },
+    {% endfor %}
+  ],
+{% endfor %}
+};
+
+if (window.location.search.length > 0 && data[decodeURIComponent(window.location.search.replace('?tag=',''))]) {
+  var posts = data[decodeURIComponent(window.location.search.replace('?tag=',''))];
+  for (var p = 0; p < posts.length; p++) {
+    var elem = document.createElement('a');
+    elem.className = 'home-post';
+    elem.href = posts[p].url;
+    elem.innerHTML = '<h2 class="home-post-title">'+posts[p].title+'</h2><span class="home-post-date">'+posts[p].date+'</span>';
+    bucket.appendChild(elem);
+  }
+} else {
+  for (var cat in data) {
+    var elem = document.createElement('a');
+    elem.className = 'category-anchor';
+    elem.innerHTML = cat+'('+data[cat].length+')';
+    elem.href = '?tag='+cat;
+    bucket.appendChild(elem);
+  }
+}
+</script>

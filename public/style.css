@@ -53,9 +53,6 @@ p, li {
   text-decoration: none;
   border-left-color: #A6242F;
 }
-/*A6242F
-0367A6
-F2E6D8*/
 .home-post-title {
   margin: 0;
 }
@@ -63,6 +60,15 @@ F2E6D8*/
   font-size: 0.8em;
   color: #999;
   display: block;
+}
+
+.category-anchor {
+  display: block;
+  margin-top: 1em;
+  font-size: 1.2em;
+  color: #222;
+  border-left: 3px solid #F2BC57;
+  padding-left: 10px;
 }
 
 /* Scaffolding */
