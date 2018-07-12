@@ -1,4 +1,5 @@
-url: http://giscollective.org
+url: mapsam.com
+baseurl: /giscollective
 name: GISC
 description: Collective spatial learning from students and professionals
 permalink: /:title
